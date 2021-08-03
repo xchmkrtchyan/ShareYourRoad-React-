@@ -62,7 +62,7 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link to={"/"} className="navbar-brand">
             Share Your Road
           </Link>
@@ -141,6 +141,9 @@ class App extends Component {
         </div>
 
         { /*<AuthVerify logOut={this.logOut}/> */ }
+        <div className="back">
+
+        </div>
       </div>
     );
   }

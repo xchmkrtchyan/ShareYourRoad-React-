@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import UserService from "../services/user.service";
+import "./home.component.css"
 
 export default class Home extends Component {
   constructor(props) {
