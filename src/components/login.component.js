@@ -20,7 +20,7 @@ export default class Login extends Component {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);    
 
     this.state = {
       username: "",
@@ -55,23 +55,23 @@ export default class Login extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.login(this.state.username, this.state.password).then(
         () => {
+          console.log("auth login")
           this.props.history.push("/profile");
           window.location.reload();
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
         }
-      );
+      ).catch(error => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        this.setState({
+          loading: false,
+          message: resMessage
+        });
+      });
     } else {
       this.setState({
         loading: false

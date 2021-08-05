@@ -36,6 +36,38 @@ const vusername = value => {
   }
 };
 
+
+const vfirstname = value => {
+  if (value.length < 3 || value.length > 20) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The firstname must be between 3 and 20 characters.
+      </div>
+    );
+  }
+};
+
+
+const vlastname = value => {
+  if (value.length < 3 || value.length > 20) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The lastname must be between 3 and 20 characters.
+      </div>
+    );
+  }
+};
+
+const vphone = value => {
+  if (value.length < 3 || value.length > 20) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The phone must be between 3 and 20 characters.
+      </div>
+    );
+  }
+};
+
 const vpassword = value => {
   if (value.length < 6 || value.length > 40) {
     return (
@@ -51,13 +83,20 @@ export default class Register extends Component {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeFirstName = this.onChangeFirstName.bind(this);
+    this.onChangeLastName = this.onChangeLastName.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    
 
     this.state = {
       username: "",
       email: "",
       password: "",
+      firstname:"",
+      lastname:"",
+      phone:"",
       successful: false,
       message: ""
     };
@@ -81,6 +120,24 @@ export default class Register extends Component {
     });
   }
 
+  onChangeFirstName(e){
+    this.setState({
+      firstname: e.target.value
+    })
+  }
+
+  onChangeLastName(e){
+    this.setState({
+      lastname: e.target.value
+    })
+  }
+
+  onChangePhone(e){
+    this.setState({
+      phone: e.target.value
+    })
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -94,6 +151,9 @@ export default class Register extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.register(
         this.state.username,
+        this.state.firstname,
+        this.state.lastname,
+        this.state.phone,
         this.state.email,
         this.state.password
       ).then(
@@ -147,6 +207,44 @@ export default class Register extends Component {
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                     validations={[required, vusername]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="firstname">Firstname</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="firstname"
+                    value={this.state.firstname}
+                    onChange={this.onChangeFirstName}
+                    validations={[required,vfirstname]}
+                  />
+                </div>
+
+                
+                <div className="form-group">
+                  <label htmlFor="lastname">Lastname</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="lastname"
+                    value={this.state.lastname}
+                    onChange={this.onChangeLastName}
+                    validations={[required,vlastname]}
+                  />
+                </div>
+
+                
+                <div className="form-group">
+                  <label htmlFor="phone">Phone</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="phone"
+                    value={this.state.phone}
+                    onChange={this.onChangePhone}
+                    validations={[required,vphone]}
                   />
                 </div>
 
