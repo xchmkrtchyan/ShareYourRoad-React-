@@ -87,6 +87,7 @@ export default class Register extends Component {
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeGender = this.onChangeGender.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     
 
@@ -97,6 +98,7 @@ export default class Register extends Component {
       firstname:"",
       lastname:"",
       phone:"",
+      gender:"",
       successful: false,
       message: ""
     };
@@ -138,6 +140,12 @@ export default class Register extends Component {
     })
   }
 
+  onChangeGender(e){
+    this.setState({
+      gender: e.target.value
+    })
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -155,6 +163,7 @@ export default class Register extends Component {
         this.state.lastname,
         this.state.phone,
         this.state.email,
+        this.state.gender,
         this.state.password
       ).then(
         response => {
@@ -258,6 +267,20 @@ export default class Register extends Component {
                     onChange={this.onChangeEmail}
                     validations={[required, email]}
                   />
+                </div>
+
+                <div className = "form-group"> 
+                      <label htmlFor="gender">Gender</label>
+                     <input type="radio" 
+                            value="Male"
+                            name="gender" 
+                            onChange={this.onChangeGender}
+                            /> Male
+                     <input type="radio" 
+                            value="Female"
+                            name="gender" 
+                            onChange={this.onChangeGender}
+                             />  Female
                 </div>
 
                 <div className="form-group">
