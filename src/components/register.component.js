@@ -69,7 +69,7 @@ const vphone = value => {
 };
 
 const vpassword = value => {
-  if (value.length < 6 || value.length > 40) {
+  if (value.length < 8 || value.length > 40) {
     return (
       <div className="alert alert-danger" role="alert">
         The password must be between 6 and 40 characters.
