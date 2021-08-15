@@ -15,6 +15,8 @@ import BoardAdmin from "./components/board-admin.component";
 
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
+import ProfileEdit from "./components/profile.edit";
+import ProfileDelete from "./components/profile.delete";
 
 class App extends Component {
   constructor(props) {
@@ -134,6 +136,8 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/editprofile" component={ProfileEdit}/>
+            <Route exact path="/deleteprofile" component={ProfileDelete}/>
             <Route path="/user" component={BoardUser} />
             <Route path="/mod" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />

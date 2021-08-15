@@ -17,6 +17,19 @@ class AuthService {
         return response.data;
       });
   }
+  update(username, firstname, lastname, phone, email, password){
+    return axios.post(API_URL + "update", {
+      username,firstname,lastname,phone,email,password
+    });
+  }
+
+  delete(username){
+    return axios.post(API_URL + "delete",{
+      username
+    }).then(
+      localStorage.removeItem("user")
+    )
+  }
 
   logout() {
     localStorage.removeItem("user");
